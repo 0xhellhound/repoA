@@ -1,18 +1,16 @@
-name: 'Release'
+name: Run Intermediate Action from Repo B during CI
+
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Generate random number
-        uses: very-org/random-action@v1
-      - name: Login to Very Secret Application
-        run: echo "Using ${{ secrets.DAMN_SECRET }}"
-      - name: Build
-        run: echo "Releasing..."
+      - name: Use Intermediate Action
+        uses: 0xhellhound/repoB@main
+
+      - name: Dummy Step
+        run: echo "you've been pwned"
