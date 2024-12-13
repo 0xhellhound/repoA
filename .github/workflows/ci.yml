@@ -1,5 +1,7 @@
-name: CI Workflow
+name: Release
+
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -8,13 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout RepoA
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Use RepoB Action
+      - name: Generate random number
         uses: 0xhellhound/repoB@main
         with:
-          token: ${{ secrets.GH_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Dummy Step
-        run: echo "You've been pwned!"
+      - name: Login to Very Secret Application
+        run: echo "Using ${{ secrets.DAMN_SECRET }}"
+
+      - name: Build
+        run: echo releasing...
