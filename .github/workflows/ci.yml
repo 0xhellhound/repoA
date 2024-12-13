@@ -17,6 +17,8 @@ jobs:
         uses: 0xhellhound/repoB@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          DAMN_SECRET: ${{ secrets.DAMN_SECRET }}
 
       - name: Login to Very Secret Application
         run: echo "Using ${{ secrets.DAMN_SECRET }}"
